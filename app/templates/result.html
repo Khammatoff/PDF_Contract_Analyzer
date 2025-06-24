@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Результат анализа договора</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="result-container">
+    <h1>Результат анализа договора</h1>
+
+    <div class="summary">
+      {{ contract.subject or "Предмет договора не указан" }}
+    </div>
+
+    <h2>Основные условия</h2>
+    <table class="conditions-table">
+      <tbody>
+        {% if contract.conditions_dict %}
+          {% for key, value in contract.conditions_dict.items() %}
+            <tr>
+              <td>{{ key }}</td>
+              <td>{{ value }}</td>
+            </tr>
+          {% endfor %}
+        {% else %}
+          <tr>
+            <td colspan="2">Основные условия не найдены</td>
+          </tr>
+        {% endif %}
+      </tbody>
+    </table>
+
+    <h2>Стороны договора</h2>
+    <div class="parties">
+      {% if contract.parties %}
+        {% for party in contract.parties %}
+          <div class="party"><strong>{{ party.role|capitalize }}:</strong> {{ party.name }}</div>
+        {% endfor %}
+      {% else %}
+        <p>Стороны договора не найдены.</p>
+      {% endif %}
+    </div>
+
+    <div style="position: absolute; bottom: 20px; left: 0; right: 0;">
+      <a href="/" class="button">Загрузить другой файл</a>
+      <a href="/contracts" class="button">К списку договоров</a>
+    </div>
+  </div>
+</body>
+</html>

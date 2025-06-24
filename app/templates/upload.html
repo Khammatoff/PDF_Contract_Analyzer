@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Анализ договора</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="upload-container">
+    <h1>Анализ договора</h1>
+
+    <div class="upload-center-block">
+      <form action="/analyze" method="post" enctype="multipart/form-data" class="upload-form">
+        <label class="file-input-label">
+          Выбрать файл
+          <input type="file" name="file" accept="application/pdf" required class="file-input">
+        </label>
+        <div class="file-input-text">Файл не выбран</div>
+        <button type="submit" class="btn-submit">Загрузить</button>
+      </form>
+    </div>
+
+    <div class="bottom-button-container">
+      <a href="/contracts" class="button">Ранее загруженные</a>
+    </div>
+  </div>
+
+  <script>
+    const fileInput = document.querySelector('.file-input');
+    const fileInputText = document.querySelector('.file-input-text');
+
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files.length > 0) {
+        fileInputText.textContent = fileInput.files[0].name;
+      } else {
+        fileInputText.textContent = 'Файл не выбран';
+      }
+    });
+
+    fileInputText.addEventListener('click', () => fileInput.click());
+  </script>
+</body>
+</html>

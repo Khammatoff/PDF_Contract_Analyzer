@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Список договоров</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="contracts-container">
+    <h1>Ранее загруженные договоры</h1>
+
+    {% if contracts %}
+      <ul class="contract-list">
+        {% for c in contracts %}
+          <li>
+            <div class="contract-name" title="{{ c.filename }}">
+              {{ c.filename }}
+            </div>
+
+            <a href="/contracts/{{ c.id }}" class="button">Просмотр</a>
+            <a href="/contracts/{{ c.id }}/download" class="button">Скачать</a>
+
+            <form action="/contracts/{{ c.id }}/delete" method="post" style="display: inline;">
+              <button type="submit" class="button delete">Удалить</button>
+            </form>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Пока нет загруженных договоров.</p>
+    {% endif %}
+
+    <a href="/" class="button" style="margin-top: 20px;">Загрузить новый договор</a>
+  </div>
+</body>
+</html>
