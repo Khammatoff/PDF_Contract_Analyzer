@@ -17,7 +17,7 @@
 
 1. Клонируйте репозиторий:
    ```bash
-   git clone https://github.com/your-username/PDF_Contract_Analyzer.git
+   git clone https://github.com/Khammatoff/PDF_Contract_Analyzer.git
    cd PDF_Contract_Analyzer
    ```
 
